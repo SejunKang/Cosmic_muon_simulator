@@ -1,40 +1,41 @@
-# Use this open statement to create an OpenGL view:
-/vis/open OGL 600x600-0+0
+#Create OpenGL view
+/vis/open TSG_QT_ZB
 
-# Disable auto refresh and quieten vis messages whilst scene and
-# trajectories are established:
+#Disable auto refresh and clean verbose
 /vis/viewer/set/autoRefresh false
 /vis/verbose errors
 
-# Draw geometry:
+#Draw geometry
 /vis/drawVolume
 
-# Specify view angle:
+#Specify view angle
 /vis/viewer/set/viewpointThetaPhi 120 150
 /vis/viewer/set/lightsVector -1 0 0
 
-# Specify style (surface, wireframe, auxiliary edges,...)
+#Specify style
 /vis/viewer/set/style wireframe
 /vis/viewer/set/auxiliaryEdge true
 /vis/viewer/set/lineSegmentsPerCircle 100
 
-# Draw smooth trajectories at end of event, showing trajectory points
-# as markers 2 pixels wide:
+#Draw smooth trajectories, with trajectory points as markers 2 pixels size
 /vis/scene/add/trajectories smooth
 /vis/modeling/trajectories/create/drawByCharge
 /vis/modeling/trajectories/drawByCharge-0/default/setDrawStepPts true
 /vis/modeling/trajectories/drawByCharge-0/default/setStepPtsSize 2
-# (if too many tracks cause core dump => /tracking/storeTrajectory 0)
 
-# Draw hits at end of event:
+#Activate this in case too many tracks cause core dump
+#/tracking/storeTrajectory 0
+
+#Draw hits at end of event (Currently disabled)
 #/vis/scene/add/hits
 
-# Decoration
-/vis/scene/add/axes    # Simple axes: x=red, y=green, z=blue.
+#Adding axes
+#x = red, y = green, z = blue
+/vis/scene/add/axes
 
-# To superimpose all of the events from a given run:
+#Accumulate all of the events from a given run
 /vis/scene/endOfEventAction accumulate
 
-# Re-establish auto refreshing and verbosity:
+#Re-establish auto refresh and verbose
 /vis/viewer/set/autoRefresh true
 /vis/verbose warnings

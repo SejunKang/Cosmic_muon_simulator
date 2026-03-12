@@ -1,25 +1,20 @@
-
-#ifndef STEPPINGACTION_h
-#define STEPPINGACTION_h 1
+#ifndef STEPPINGACTION_HH
+#define STEPPINGACTION_HH
 
 #include "G4UserSteppingAction.hh"
-
 #include "EventAction.hh"
 
 class EventAction;
 
-class SteppingAction: public G4UserSteppingAction
+class SteppingAction : public G4UserSteppingAction
 {
-  public:
-	SteppingAction(EventAction* EA);
-	virtual ~SteppingAction();
+	public:
+		SteppingAction(EventAction* EA);	//Connect to EventAction
+		virtual ~SteppingAction();
+		virtual void UserSteppingAction(const G4Step* step);
 
-	virtual void UserSteppingAction(const G4Step*);
-    
-
-  private:
-	EventAction* m_EA;
-
+	private:
+		EventAction* m_EA;
 };
 
 #endif

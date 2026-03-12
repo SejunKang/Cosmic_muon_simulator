@@ -3,11 +3,8 @@
 #include "RunAction.hh"
 #include "EventAction.hh"
 #include "SteppingAction.hh"
-#include "TrackingAction.hh"
 
-
-ActionInitialization::ActionInitialization()
-    : G4VUserActionInitialization()
+ActionInitialization::ActionInitialization() : G4VUserActionInitialization()
 {
 }
 
@@ -17,16 +14,22 @@ ActionInitialization::~ActionInitialization()
 
 void ActionInitialization::BuildForMaster() const
 {
-    SetUserAction(new RunAction);
+	//Register RunAction (For Multithreading mode)
+	SetUserAction(new RunAction);
 }
 
 void ActionInitialization::Build() const
 {
-    SetUserAction(new PrimaryGeneratorAction);
-    SetUserAction(new RunAction());
-    EventAction* EA = new EventAction();
-    SetUserAction(EA);
-    SetUserAction(new SteppingAction(EA));
-    SetUserAction(new TrackingAction);
+	//Register PrimaryGeneratorAction
+	SetUserAction(new PrimaryGeneratorAction());
 
+	//Register RunAction
+	SetUserAction(new RunAction());
+
+	//Register EventAction
+	EventAction* EA = new EventAction();
+	SetUserAction(EA);
+
+	//Register SteppingAction
+   	SetUserAction(new SteppingAction(EA));
 }
