@@ -1,0 +1,8 @@
+#Vim cache files
+*.swp
+*~
+
+#CMake results
+build/
+
+
