@@ -1,6 +1,6 @@
 # How to use
 
-**1. Download**
+**1. Download (You must install git first)**
   ```
   git clone git@github.com:SejunKang/Cosmic_muon_simulator.git
   ```
