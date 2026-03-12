@@ -15,11 +15,13 @@ make
 ```
 
 **3. Run the simulation**
+
 a. Run in UI mode
 ```
 ./cosmu
 ```
 Push the start button on the top of the GUI screen to shoot one muon beam. If you want to shoot multiple beams, type `/run/beamOn <number>` in the UI window.
+
 b. Run in batch mode
 ```
 ./cosmu run.mac
