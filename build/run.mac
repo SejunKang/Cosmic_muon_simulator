@@ -1,8 +1,0 @@
-#Running in batch mode without graphic
-#Can be executed in UI using /control/execute run.mac
-
-/run/initialize
-
-#Adjust this to change the number of cosmic muons
-/run/beamOn 100
-

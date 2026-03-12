@@ -1,3 +1,0 @@
-/home/sejunkang/cosmu/build/CMakeFiles/cosmu.dir
-/home/sejunkang/cosmu/build/CMakeFiles/edit_cache.dir
-/home/sejunkang/cosmu/build/CMakeFiles/rebuild_cache.dir
