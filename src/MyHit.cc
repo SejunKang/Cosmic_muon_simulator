@@ -8,6 +8,7 @@ MyHit::MyHit() : G4VHit()
 	//Initialization
 	fEdep = 0.0;
 	fPos = G4ThreeVector();
+	fMomentum = G4ThreeVector();
 	fdetID = -1;
 	fName = "";
 	fTrackID = -1;

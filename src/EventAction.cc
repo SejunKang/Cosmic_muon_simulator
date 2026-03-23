@@ -28,7 +28,6 @@ void EventAction::EndOfEventAction(const G4Event *event)
 	auto HCE = event -> GetHCofThisEvent();
 	if (!HCE) return;
 
-	//Get Collection ID
 	static G4int hcID = -1;
 	if (hcID < 0) hcID = G4SDManager::GetSDMpointer() -> GetCollectionID("detSD/MyHitsCollection");	//"SD name/Hit collection" name format
 	
@@ -40,21 +39,31 @@ void EventAction::EndOfEventAction(const G4Event *event)
 		G4int numHits = hcPointer -> entries();
 		
 		//Record Hit informations
-		for (G4int i = 0; i < numHits; i++) {
-		MyHit *hit = (*hcPointer)[i];
+		for (G4int n = 0; n < numHits; n++) {
+		MyHit *hit = (*hcPointer)[n];
 		
-		auto position = hit -> GetPos();
+		//Extract i, j, & k from the copynumber
+		auto copyNum = hit -> GetdetID();
+		G4int i = copyNum % (nx*ny) % nx;
+        	G4int j = copyNum % (nx*ny) / nx;
+        	G4int k = copyNum / (nx*ny);
 		
 		AM -> FillNtupleIColumn(0, event -> GetEventID());	//Current EventID
 		AM -> FillNtupleIColumn(1, hit -> GetTrackID());	//TrackID of the detected particle
-		AM -> FillNtupleIColumn(2, hit -> GetdetID());		//Detector ID (In case you are simulating multiple detectors)
-		AM -> FillNtupleSColumn(3, hit -> GetName());		//Name of the detected particle
-		AM -> FillNtupleDColumn(4, hit -> GetEdep());		//Get muon energy when reaching the detector
+		AM -> FillNtupleIColumn(2, i);				//x row ID of the detector
+		AM -> FillNtupleIColumn(3, j);				//y row ID of the detector
+		AM -> FillNtupleIColumn(4, k);				//z row ID of the detector
+		AM -> FillNtupleSColumn(5, hit -> GetName());		//Name of the detected particle
+		
+		//Get muon energy when reaching the detector (Currently not in use)
+		//AM -> FillNtupleDColumn(6, hit -> GetEdep());
 									
-		//Get muon position when reaching the detector	
-		AM -> FillNtupleDColumn(5, position.getX());
-		AM -> FillNtupleDColumn(6, position.getY());
-		AM -> FillNtupleDColumn(7, position.getZ());
+		//Get muon position when reaching the detector (Currently not in use)
+		//auto position = hit -> GetPos();
+		//AM -> FillNtupleDColumn(7, position.getX());
+		//AM -> FillNtupleDColumn(8, position.getY());
+		//AM -> FillNtupleDColumn(9, position.getZ());
+
 		AM -> AddNtupleRow();
 		}
 	}

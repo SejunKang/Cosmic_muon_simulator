@@ -35,6 +35,7 @@ G4bool MySensitiveDetector::ProcessHits(G4Step *step, G4TouchableHistory *ToHist
 		hit -> SetdetID(step -> GetPreStepPoint() -> GetTouchableHandle() -> GetCopyNumber());
 		hit -> SetEdep(Edep);
 		hit -> SetPos(step -> GetPreStepPoint() -> GetPosition());
+		hit -> SetMomentum(step -> GetPreStepPoint() -> GetMomentum());
 		hit -> SetName(step -> GetTrack() -> GetDefinition() -> GetParticleName());
 		hit -> SetTrackID(step -> GetTrack() -> GetTrackID());
 

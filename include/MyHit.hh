@@ -24,6 +24,10 @@ class MyHit : public G4VHit
 		void SetPos(G4ThreeVector pos) {fPos = pos;}
 		G4ThreeVector GetPos() const {return fPos;}
 
+		//Momentum
+		void SetMomentum(G4ThreeVector momentum) {fMomentum = momentum;}
+		G4ThreeVector GetMomentum() const {return fMomentum;}
+
 		//Detector ID
 		void SetdetID(G4int detid) {fdetID = detid;}
 		G4int GetdetID() const {return fdetID;}
@@ -39,6 +43,7 @@ class MyHit : public G4VHit
 		private:
 		G4double fEdep;
 		G4ThreeVector fPos;
+		G4ThreeVector fMomentum;
 		G4int fdetID;
 		G4String fName;
 		G4int fTrackID;

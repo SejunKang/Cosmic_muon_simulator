@@ -26,12 +26,19 @@ void RunAction::BeginOfRunAction(const G4Run *run)
    	AM -> CreateNtuple("tree", "cosmic_muon_detection");
    	AM -> CreateNtupleIColumn("eid");
 	AM -> CreateNtupleIColumn("tid");
-   	AM -> CreateNtupleIColumn("detid");
+   	AM -> CreateNtupleIColumn("i");
+	AM -> CreateNtupleIColumn("j");
+	AM -> CreateNtupleIColumn("k");
 	AM -> CreateNtupleSColumn("pname");
-   	AM -> CreateNtupleDColumn("E");
-   	AM -> CreateNtupleDColumn("px");
-   	AM -> CreateNtupleDColumn("py");
-   	AM -> CreateNtupleDColumn("pz");
+   	
+	//Energy of muons when they reach the detector (Currently not in use)
+	//AM -> CreateNtupleDColumn("E");
+
+	//Position of muons when they reach the detector (Currently not in use)
+   	//AM -> CreateNtupleDColumn("x");
+   	//AM -> CreateNtupleDColumn("y");
+   	//AM -> CreateNtupleDColumn("z");
+	
    	AM -> FinishNtuple(0); 
 }
 

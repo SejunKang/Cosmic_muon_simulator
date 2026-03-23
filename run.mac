@@ -4,5 +4,5 @@
 /run/initialize
 
 #Adjust this to change the number of cosmic muons
-/run/beamOn 100
+/run/beamOn 10000
 
