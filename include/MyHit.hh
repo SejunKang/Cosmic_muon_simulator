@@ -40,6 +40,14 @@ class MyHit : public G4VHit
 		void SetTrackID(G4int trackID) {fTrackID = trackID;}
 		G4int GetTrackID() const {return fTrackID;}
 
+		//Step Number
+		void SetStepNumber(G4int StepNumber) {fStepNumber = StepNumber;}
+		G4int GetStepNumber() const {return fStepNumber;}
+
+		//Global time
+		void SetTime(G4double time) {ftime = time;}
+		G4double GetTime() const {return ftime;}
+
 		private:
 		G4double fEdep;
 		G4ThreeVector fPos;
@@ -47,6 +55,8 @@ class MyHit : public G4VHit
 		G4int fdetID;
 		G4String fName;
 		G4int fTrackID;
+		G4int fStepNumber;
+		G4double ftime;
 };
 
 //Definitions of HitsCollection & HitsAllocator

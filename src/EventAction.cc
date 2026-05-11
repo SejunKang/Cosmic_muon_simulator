@@ -19,7 +19,7 @@ void EventAction::BeginOfEventAction(const G4Event *event)
 	//Print out the current evenrID with the total number of events
    	G4int eventID = event -> GetEventID();
    	G4int TotalEvents = RunAction::fTotalEvents;
-	std::cout << std::fixed << std::setprecision(2) << "\rProgress: " << eventID + 1 << " Completed out of " << TotalEvents << " Events" << std::flush;
+	std::cerr << std::fixed << std::setprecision(2) << "\rProgress: " << eventID + 1 << " Completed out of " << TotalEvents << " Events" << std::flush;
 }
 
 void EventAction::EndOfEventAction(const G4Event *event)
@@ -50,20 +50,28 @@ void EventAction::EndOfEventAction(const G4Event *event)
 		
 		AM -> FillNtupleIColumn(0, event -> GetEventID());	//Current EventID
 		AM -> FillNtupleIColumn(1, hit -> GetTrackID());	//TrackID of the detected particle
-		AM -> FillNtupleIColumn(2, i);				//x row ID of the detector
-		AM -> FillNtupleIColumn(3, j);				//y row ID of the detector
-		AM -> FillNtupleIColumn(4, k);				//z row ID of the detector
-		AM -> FillNtupleSColumn(5, hit -> GetName());		//Name of the detected particle
+		AM -> FillNtupleIColumn(2, hit -> GetStepNumber());	//Step number of the detected particle
+		AM -> FillNtupleIColumn(3, i);				//x row ID of the detector
+		AM -> FillNtupleIColumn(4, j);				//y row ID of the detector
+		AM -> FillNtupleIColumn(5, k);				//z row ID of the detector
+		AM -> FillNtupleSColumn(6, hit -> GetName());		//Name of the detected particle
+		AM -> FillNtupleDColumn(7, hit -> GetTime()/ns);	//Time when the particle detected
 		
 		//Get muon energy when reaching the detector (Currently not in use)
-		//AM -> FillNtupleDColumn(6, hit -> GetEdep());
+		//AM -> FillNtupleDColumn(8, hit -> GetEdep()/MeV);
 									
 		//Get muon position when reaching the detector (Currently not in use)
 		//auto position = hit -> GetPos();
-		//AM -> FillNtupleDColumn(7, position.getX());
-		//AM -> FillNtupleDColumn(8, position.getY());
-		//AM -> FillNtupleDColumn(9, position.getZ());
-
+		//AM -> FillNtupleDColumn(9, position.getX()/m);
+		//AM -> FillNtupleDColumn(10, position.getY()/m);
+		//AM -> FillNtupleDColumn(11, position.getZ()/m);
+		
+		//Get muon momentum when reaching the detector (Currently not in use)
+		//auto momentum = hit -> GetMomentum();
+                //AM -> FillNtupleDColumn(12, momentum.getX()/MeV);
+                //AM -> FillNtupleDColumn(13, momentum.getY()/MeV);
+                //AM -> FillNtupleDColumn(14, momentum.getZ()/MeV);
+	
 		AM -> AddNtupleRow();
 		}
 	}

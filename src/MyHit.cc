@@ -12,6 +12,8 @@ MyHit::MyHit() : G4VHit()
 	fdetID = -1;
 	fName = "";
 	fTrackID = -1;
+	fStepNumber = -1;
+	ftime = 0.0;
 }
 
 MyHit::~MyHit()
