@@ -4,6 +4,7 @@
   ```
   git clone git@github.com:SejunKang/Cosmic_muon_simulator.git
   ```
+Also, install `EcoMug` to generate cosmic muons.
 
 **2. Operate `CMAKE` to create the executable file**
 ```
